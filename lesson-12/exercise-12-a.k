@@ -1,10 +1,16 @@
 module EXERCISE-12-A
-  imports STRING
+    imports STRING
+    imports INT
+    imports K-EQUAL
+    imports LIST
 
-  syntax Strings ::= String "," Strings | ".Strings"
-  // syntax Strings ::= List{String,","}
-  // syntax Strings ::= concat(Strings) [function]
+    // "Strings" is a list of String
+    syntax Strings ::= String "," Strings | ".Strings"
+    // syntax Strings ::= List{String,","}
+    syntax String ::= concat(Strings) [function]
 
-  // rule concat(S) => S
+    rule concat(.Strings) => ""
+    rule concat(S:String, Ss:Strings) => 
+        S +String " " +String concat(Ss)
 endmodule
 
